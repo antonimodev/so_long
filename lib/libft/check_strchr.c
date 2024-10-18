@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   check_strchr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 12:35:07 by antonimo          #+#    #+#             */
-/*   Updated: 2024/10/18 11:52:06 by antonimo         ###   ########.fr       */
+/*   Created: 2024/10/17 12:43:43 by antonimo          #+#    #+#             */
+/*   Updated: 2024/10/18 13:31:09 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../lib/libft/libft.h"
-# include "../lib/minilibx-linux/mlx.h"
-# include "../lib/minilibx-linux/mlx_int.h"
-# include <stdbool.h>
-
-#endif
+int	check_strchr(char *str, char chr)
+{
+	if (!chr)
+		return (0);
+	while (str)
+	{
+		if (*str == chr)
+			return (1);
+		str++;
+	}
+	return (0);
+}

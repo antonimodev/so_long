@@ -17,7 +17,8 @@ MAKE_LIB		= make --no-print-directory -C
 
 # Push swap sources #
 
-SO_LONG_SRC	= $(wildcard *.c)
+SO_LONG_SRC	=	$(wildcard *.c) \
+				$(wildcard src/*.c) \
 
 # Push swap objects #
 

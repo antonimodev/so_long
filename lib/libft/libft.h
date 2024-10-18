@@ -13,12 +13,17 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
 # include <ctype.h>
 # include <stdlib.h>
 # include <stddef.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 2
+#  endif
 
 typedef struct s_list
 {
@@ -30,7 +35,7 @@ typedef struct s_pipe
 {
 	int				read_pipe;
 	int				write_pipe;
-} t_pipe;
+}	t_pipe;
 
 /**
  * @brief Verifies if the given value is an alphabetic character.
@@ -82,7 +87,7 @@ int		ft_isprint(int c);
  * @param s The string to be measured.
  * @return size_t Returns the length of the string.
  */
-size_t	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 
 /**
  * @brief Fills the first 'n' bytes of the memory area pointed to by
@@ -472,5 +477,61 @@ int		ft_matrixlen(char **matrix);
  * @return A `t_pipe` structure containing the read and write file descriptors.
  */
 t_pipe	create_pipe(void);
+/**
+ * @brief Extracts the remaining part of the line from the static buffer.
+ *
+ * @param stat_buff The static buffer containing the line.
+ * @return A pointer to the remaining part of the line.
+ */
+char	*ft_line_remaining(char *stat_buff);
 
+/**
+ * @brief Extracts the line from the static buffer.
+ *
+ * @param stat_buff The static buffer containing the line.
+ * @return A pointer to the extracted line.
+ */
+char	*ft_line(char *stat_buff);
+
+/**
+ * @brief Reads a specified buffer size from the file descriptor.
+ *
+ * @param fd The file descriptor to read from.
+ * @param stat_buff The static buffer to store the read data.
+ * @return A pointer to the updated static buffer.
+ */
+char	*ft_read_buffersize(int fd, char *stat_buff);
+
+/**
+ * @brief Gets the next line from the file descriptor.
+ *
+ * @param fd The file descriptor to read from.
+ * @return A pointer to the next line read from the file descriptor.
+ */
+char	*get_next_line(int fd);
+
+/**
+ * @brief Checks if a character is present in a string.
+ *
+ * This function searches for the first occurrence of the character `chr`
+ * in the string `str`.
+ *
+ * @param str The string to be searched.
+ * @param chr The character to search for.
+ * @return int Returns 1 if the character is found, 0 otherwise.
+ */
+int		check_strchr(char *str, char chr);
+
+/**
+ * @brief Joins two strings into a new string.
+ *
+ * This function concatenates the strings `s1` and `s2` into a new string.
+ * The new string is dynamically allocated and should be freed by the caller.
+ *
+ * @param s1 The first string.
+ * @param s2 The second string.
+ * @return char* Returns a pointer to the newly allocated string, or NULL if
+ *  the allocation fails.
+ */
+char	*ft_strjoin_gnl(char *s1, char *s2);
 #endif

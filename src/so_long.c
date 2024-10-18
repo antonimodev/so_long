@@ -6,13 +6,13 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:13:52 by antonimo          #+#    #+#             */
-/*   Updated: 2024/10/14 14:02:25 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:20:35 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/so_long.h"
+#include "../include/so_long.h"
 
-int	main(void)
+/* int	main(void)
 {
 	void	*mlx_ptr;
 	void	*window_ptr;
@@ -27,4 +27,4 @@ int	main(void)
 	mlx_destroy_display(mlx_ptr);
 	free(mlx_ptr);
 	return (0);
-}
+} */
