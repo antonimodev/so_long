@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:43:06 by antonimo          #+#    #+#             */
-/*   Updated: 2024/10/17 13:01:26 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:06:13 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_line_remaining(char *stat_buff)
 		stat_buff = NULL;
 		return (NULL);
 	}
-	line = ft_calloc((ft_strlen(stat_buff) - i + 1), sizeof(char));
+	line = ft_calloc_gnl((ft_strlen_gnl(stat_buff) - i + 1), sizeof(char));
 	i++;
 	j = 0;
 	while (stat_buff[i])
@@ -46,7 +46,7 @@ char	*ft_line(char *stat_buff)
 		return (NULL);
 	while (stat_buff[i] && stat_buff[i] != '\n')
 		i++;
-	line = ft_calloc(i + 2, sizeof(char));
+	line = ft_calloc_gnl(i + 2, sizeof(char));
 	i = 0;
 	while (stat_buff[i] && stat_buff[i] != '\n')
 	{
@@ -68,8 +68,8 @@ char	*ft_read_buffersize(int fd, char *stat_buff)
 	int		read_result;
 
 	if (!stat_buff)
-		stat_buff = ft_calloc(1, sizeof(char));
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		stat_buff = ft_calloc_gnl(1, sizeof(char));
+	buffer = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	read_result = 1;
 	while (read_result > 0)
 	{
@@ -83,8 +83,8 @@ char	*ft_read_buffersize(int fd, char *stat_buff)
 			return (NULL);
 		}
 		buffer[read_result] = '\0';
-		stat_buff = ft_strjoin(stat_buff, buffer);
-		if (check_strchr(buffer, '\n') == 1)
+		stat_buff = ft_strjoin_gnl(stat_buff, buffer);
+		if (ft_strchr_gnl(buffer, '\n') == 1)
 			break ;
 	}
 	free(buffer);
@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	stat_buff = ft_read_buffersize(fd, stat_buff);
-	if (ft_strlen(stat_buff) < 1)
+	if (ft_strlen_gnl(stat_buff) < 1)
 	{
 		free(stat_buff);
 		stat_buff = NULL;

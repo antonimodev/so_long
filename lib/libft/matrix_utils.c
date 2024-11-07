@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:47:34 by antonimo          #+#    #+#             */
-/*   Updated: 2024/10/14 12:52:23 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:07:24 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_matrix(char **matrix)
 	}
 }
 
-int	ft_matrixlen(char **matrix)
+int	matrixlen(char **matrix)
 {
 	int	i;
 

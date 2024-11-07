@@ -6,13 +6,13 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:42:24 by antonimo          #+#    #+#             */
-/*   Updated: 2024/10/17 13:01:06 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:06:06 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlen_gnl(const char *str)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	len = (ft_strlen(s1) + ft_strlen(s2));
+	len = (ft_strlen_gnl(s1) + ft_strlen_gnl(s2));
 	str = malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
@@ -52,7 +52,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	return (str);
 }
 
-int	check_strchr(char *str, char chr)
+int	ft_strchr_gnl(char *str, char chr)
 {
 	int	i;
 
@@ -68,7 +68,7 @@ int	check_strchr(char *str, char chr)
 	return (0);
 }
 
-void	*ft_calloc(size_t size, size_t type)
+void	*ft_calloc_gnl(size_t size, size_t type)
 {
 	char	*str;
 	size_t	i;

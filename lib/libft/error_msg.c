@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_strchr.c                                     :+:      :+:    :+:   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 12:43:43 by antonimo          #+#    #+#             */
-/*   Updated: 2024/10/28 11:00:43 by antonimo         ###   ########.fr       */
+/*   Created: 2024/11/07 13:04:26 by antonimo          #+#    #+#             */
+/*   Updated: 2024/11/07 13:04:44 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_strchr(char *str, char chr)
+void	error_msg(char *msg)
 {
-	if (!chr)
-		return (0);
-	while (str)
-	{
-		if (*str == chr)
-			return (1);
-		str++;
-	}
-	return (0);
+	ft_putendl_fd(msg, 2);
+	exit(EXIT_FAILURE);
 }

@@ -1,61 +1,50 @@
 # Variables #
-
-NAME	= so_long
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
-RM		= rm -rf
+NAME = so_long
+CC = gcc
+CFLAGS = -Wall -Wextra -g
+RM = rm -rf
 
 # Libraries #
-
-LIBFT_DIR		= lib/libft
-LIBFT_FILE		= $(LIBFT_DIR)/libft.a
+LIBFT_DIR = lib/libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 MLX_DIR			= lib/minilibx-linux
 MLX_FILE		= $(MLX_DIR)/libmlx.a
 
-MAKE_LIB		= make --no-print-directory -C
+MAKE_LIB = make --no-print-directory
 
-# Push swap sources #
+# So long sources #
+SO_LONG_SRC = main.c map_validation.c validations.c validations_utils.c
 
-SO_LONG_SRC	=	$(wildcard *.c) \
-				$(wildcard src/*.c) \
-
-# Push swap objects #
-
+# So long objects #
 SO_LONG_OBJ = $(addprefix obj/, $(SO_LONG_SRC:.c=.o))
-
-# Rules #
 
 all: $(NAME)
 
-$(LIBFT_FILE):
-	@$(MAKE_LIB) $(LIBFT_DIR)
+$(LIBFT):
+	@$(MAKE_LIB) -C $(LIBFT_DIR)
 
-$(MLX_FILE):
-	@$(MAKE_LIB) $(MLX_DIR)
+#$(MLX_FILE):
+#	@$(MAKE_LIB) $(MLX_DIR)
 
 obj/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(LIBFT_FILE) $(MLX_FILE) $(SO_LONG_OBJ)
-	$(CC) $(SO_LONG_OBJ) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -o $(NAME) -lX11 -lXext
-	@echo $(NAME) compiled!
+$(NAME): $(SO_LONG_OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) -o $(NAME) $(SO_LONG_OBJ) -L$(LIBFT_DIR) -lft
+	@echo "$(NAME) created!"
 
 clean:
 	@$(RM) obj
-	@$(RM) $(LIBFT_DIR)/*.o
+	@$(RM) $(LIBFT_DIR)/obj
 	@$(RM) $(LIBFT_DIR)/.DS_Store
 	@$(RM) $(LIBFT_DIR)/.vscode
 	@echo Objects removed
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(RM) $(LIBFT_FILE)
-	@$(MAKE_LIB) $(MLX_DIR) clean
-	@$(RM) .vscode
-	@$(RM) .DS_Store
-	@echo Executable removed
+	@$(RM) $(LIBFT_DIR)/libft.a
 
 re: fclean all
 
