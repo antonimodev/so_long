@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:38:27 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/07 13:45:26 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:19:23 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	count_entities(char *line, t_entities *entities)
 {
 	entities->player_counter += count_char_in_str(line, PLAYER);
 	entities->exit_counter += count_char_in_str(line, EXIT);
-	entities->collectible_counter += count_char_in_str(line, COIN);
+	entities->coin_counter += count_char_in_str(line, COIN); // Changed from collectible_counter to coin_counter
 }
 
 // Concat strings freeing s1
@@ -49,24 +49,54 @@ char	*gnl_cat(char *s1, char *s2)
 }
 
 //ft para localizar player
-
 t_coords	find_player(char **map)
 {
-	t_coords	player_coords;
+	t_coords	p_coords;
 
-    player_coords.x = 1;
-    player_coords.y = 1;
-    while (map[player_coords.x])
+    p_coords.x = 1;
+    p_coords.y = 1;
+    while (map[p_coords.x])
     {
-        while (map[player_coords.x][player_coords.y])
+        while (map[p_coords.x][p_coords.y])
         {
-            if (map[player_coords.x][player_coords.y] == PLAYER)
-                flag = true;
-            player_coords.y++;
-        }
-        player_coords.x++;
-        player_coords.y = 1;
-    }
+			if (map[p_coords.x][p_coords.y] == PLAYER)
+				return (p_coords);
+			p_coords.y++;
+		}
+		p_coords.y = 1;
+		p_coords.x++;
+	}
     free_matrix(map);
     error_msg("Error: player not found");
+	return (p_coords);
+}
+
+void flood_fill(int x, int y, int *coins, char **map, bool *exit)
+{
+    if (!map[x] || !map[x][y])
+        return;
+    if (map[x][y] == WALL || map[x][y] == VISITED)
+        return;
+    if (map[x][y] == COIN)
+        (*coins)--;
+    if (map[x][y] == EXIT)
+        *exit = true;
+    map[x][y] = VISITED;
+    flood_fill(x + 1, y, coins, map, exit);
+    flood_fill(x - 1, y, coins, map, exit);
+    flood_fill(x, y + 1, coins, map, exit);
+    flood_fill(x, y - 1, coins, map, exit);
+}
+
+void reachable_entities(char **lines, t_entities entities, t_coords p_coords)
+{
+	bool        exit;
+
+    exit = false;
+	flood_fill(p_coords.x, p_coords.y, &entities.coin_counter, lines, &exit);
+	if (entities.coin_counter > 0 || !exit)
+    {
+        free_matrix(lines);
+        error_msg("Error: No valid exit found or coins remaining");
+    }
 }
