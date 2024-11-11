@@ -53,7 +53,7 @@ typedef struct s_game
     int         map_width;      	// Ancho del mapa
     int         map_height;     	// Alto del mapa
     t_coords    player_pos;     	// Posición del jugador
-    t_entities  entities;       	// Entidades del juego (jugador, monedas, salida)
+    t_entities  entities;       	// Entidades del juego
     int         coins_collected;	// Monedas recogidas
 } t_game;
 
@@ -64,6 +64,8 @@ char		*process_txt(int fd);
 
 // placeholder.c
 void	map_dimension(t_game *game);
+void	check_extension(char *file);
+void    set_map(t_game *game, char *file);
 
 // Validations.c
 void		validate_edges(char **lines);
@@ -77,6 +79,6 @@ void		count_entities(char *line, t_entities *entities);
 char		*gnl_cat(char *s1, char *s2);
 void		reachable_entities(char **lines, t_entities entities, t_coords p_coords);
 void		flood_fill(int x, int y, int *coins, char **map, bool *exit);
-t_coords	find_player(char **map);
+void		find_player(char **map, t_coords *player_cords);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:38:27 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:26:51 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:04:07 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,24 @@ char	*gnl_cat(char *s1, char *s2)
 }
 
 //ft para localizar player
-t_coords	find_player(char **map)
+void	find_player(char **map, t_coords *player_pos)
 {
-	t_coords	p_coords;
 
-    p_coords.x = 1;
-    p_coords.y = 1;
-    while (map[p_coords.x])
+    player_pos->x = 1;
+    player_pos->y = 1;
+    while (map[player_pos->x])
     {
-        while (map[p_coords.x][p_coords.y])
+        while (map[player_pos->x][player_pos->y])
         {
-			if (map[p_coords.x][p_coords.y] == PLAYER)
-				return (p_coords);
-			p_coords.y++;
+			if (map[player_pos->x][player_pos->y] == PLAYER)
+				return ;
+			player_pos->y++;
 		}
-		p_coords.y = 1;
-		p_coords.x++;
+		player_pos->y = 1;
+		player_pos->x++;
 	}
     free_matrix(map);
     error_msg("Error: player not found");
-	return (p_coords);
 }
 
 void flood_fill(int x, int y, int *coins, char **map, bool *exit)
