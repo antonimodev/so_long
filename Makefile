@@ -8,8 +8,8 @@ RM = rm -rf
 LIBFT_DIR = lib/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-MLX_DIR			= lib/minilibx-linux
-MLX_FILE		= $(MLX_DIR)/libmlx.a
+MLX_DIR = lib/minilibx
+MLX = $(MLX_DIR)/libmlx.a
 
 MAKE_LIB = make --no-print-directory
 
@@ -24,15 +24,15 @@ all: $(NAME)
 $(LIBFT):
 	@$(MAKE_LIB) -C $(LIBFT_DIR)
 
-#$(MLX_FILE):
-#	@$(MAKE_LIB) $(MLX_DIR)
+$(MLX):
+	@$(MAKE_LIB) -C $(MLX_DIR)
 
 obj/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(MLX_DIR) -c $< -o $@
 
-$(NAME): $(SO_LONG_OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $(NAME) $(SO_LONG_OBJ) -L$(LIBFT_DIR) -lft
+$(NAME): $(SO_LONG_OBJ) $(LIBFT) $(MLX)
+	@$(CC) $(CFLAGS) -o $(NAME) $(SO_LONG_OBJ) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lXext -lX11
 	@echo "$(NAME) created!"
 
 clean:
@@ -45,6 +45,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(LIBFT_DIR)/libft.a
+	@$(RM) $(MLX_DIR)/libmlx.a
 
 re: fclean all
 

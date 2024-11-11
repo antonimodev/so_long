@@ -6,11 +6,11 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:13:52 by antonimo          #+#    #+#             */
-/*   Updated: 2024/10/17 13:20:35 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:34:29 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../so_long.h"
 
 /* int	main(void)
 {

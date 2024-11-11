@@ -14,7 +14,10 @@
 # define SO_LONG_H
 
 # include <fcntl.h>
+# include "lib/minilibx/mlx.h"
 # include "lib/libft/libft.h"
+
+#define TILE_SIZE 32
 
 // Entities definition
 # define WALL '1'
@@ -38,10 +41,29 @@ typedef	struct s_coords
 	int	y;
 }	t_coords;
 
+typedef struct s_game
+{
+    void        *mlx;           	// Conexión con MiniLibX
+    void        *win;           	// Ventana del juego
+    void        *wall_img;      	// Imagen de la pared
+    void        *player_img;    	// Imagen del jugador
+    void        *coin_img;      	// Imagen de la moneda
+    void        *exit_img;      	// Imagen de la salida
+    char        **map;          	// Mapa del juego
+    int         map_width;      	// Ancho del mapa
+    int         map_height;     	// Alto del mapa
+    t_coords    player_pos;     	// Posición del jugador
+    t_entities  entities;       	// Entidades del juego (jugador, monedas, salida)
+    int         coins_collected;	// Monedas recogidas
+} t_game;
+
 // Map_validation.c
-void		map_validation(char *map);
+void		map_validation(t_game *game, char *map);
 char		*txt_to_line(char *txt);
 char		*process_txt(int fd);
+
+// placeholder.c
+void	map_dimension(t_game *game);
 
 // Validations.c
 void		validate_edges(char **lines);
