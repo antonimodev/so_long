@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:37:47 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/12 13:31:03 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:45:14 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void    init_sprites(t_game *game)
 
     //mlx_xpm_file_to_image -> prepara el archivo xpm para poder trabajar con él después
     game->floor_img = mlx_xpm_file_to_image(game->mlx, "filename", width, height); // en principio 32x32
+    if (!game->floor_img)
+    {
+        //liberar lo necesario
+        error_msg("Error: sprite not found");
+    }
     // Deberíamos hacer lo mismo con todos
     game->wall_img;
     game->player_img;
