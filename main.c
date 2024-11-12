@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:17:05 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:57:12 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:31:29 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int main(void)
     t_game game;
     
     map_validation(&game, "maps/map.ber");
+    init_mlx(&game);
+    render_map(&game);
     
     printf("\n\n ----------------- GUCCI ----------------- \n\n");
     return (0);

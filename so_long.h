@@ -20,11 +20,13 @@
 #define TILE_SIZE 32
 
 // Entities definition
+# define FLOOR '0'
 # define WALL '1'
 # define PLAYER 'P'
 # define COIN 'C'
 # define EXIT 'E'
 # define VISITED 'V' // Added VISITED definition
+
 
 // Entities struct (Player, Collectibles and Exit)
 typedef struct s_entities
@@ -61,11 +63,11 @@ typedef struct s_game
 void		map_validation(t_game *game, char *map);
 char		*txt_to_line(char *txt);
 char		*process_txt(int fd);
+void	    validate_extension(char *file);
 
-// placeholder.c
-void	map_dimension(t_game *game);
-void	check_extension(char *file);
-void    set_map(t_game *game, char *file);
+// set_map.c
+void	    set_map_dimension(t_game *game);
+void        set_map(t_game *game, char *file);
 
 // Validations.c
 void		validate_edges(char **lines);
@@ -80,5 +82,9 @@ char		*gnl_cat(char *s1, char *s2);
 void		reachable_entities(char **lines, t_entities entities, t_coords p_coords);
 void		flood_fill(int x, int y, int *coins, char **map, bool *exit);
 void		find_player(char **map, t_coords *player_cords);
+
+// so_long_init.c
+void        init_mlx(t_game *game);
+void        render_map(t_game *game);
 
 #endif

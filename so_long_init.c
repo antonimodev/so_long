@@ -6,39 +6,47 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:37:47 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:46:43 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:43:04 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* void init_game(t_game *game)
+void init_mlx(t_game *game)
 {
+    int win_width;
+    int win_height;
+
+    win_height = game->map_height * TILE_SIZE;
+    win_width = game->map_width * TILE_SIZE;
     game->mlx = mlx_init();
     if (!game->mlx)
-        error_msg("Error: mlx_init failed");
-
-    game->win = mlx_new_window(game->mlx, game->map_width * TILE_SIZE, game->map_height * TILE_SIZE, "so_long");
+    {
+        //liberar los datos de t_game
+        error_msg("Error: mlx can't initialise");
+    }
+    game->win = mlx_new_window(game->mlx, win_height, win_width, "Window's name");
     if (!game->win)
-        error_msg("Error: mlx_new_window failed");
-
-    game->wall_img = mlx_xpm_file_to_image(game->mlx, "images/wall.xpm", &game->map_width, &game->map_height);
-    game->player_img = mlx_xpm_file_to_image(game->mlx, "images/player.xpm", &game->map_width, &game->map_height);
-    game->coin_img = mlx_xpm_file_to_image(game->mlx, "images/coin.xpm", &game->map_width, &game->map_height);
-    game->exit_img = mlx_xpm_file_to_image(game->mlx, "images/exit.xpm", &game->map_width, &game->map_height);
-
-    if (!game->wall_img || !game->player_img || !game->coin_img || !game->exit_img)
-        error_msg("Error: mlx_xpm_file_to_image failed");
-} *//* 
+    {
+        //liberar los datos de t_game
+        error_msg("Error: mlx can't create a window");
+    }
+}
 
 void render_map(t_game *game)
 {
-    int x, y;
-
-    for (y = 0; y < game->map_height; y++)
+    int x = 0;
+    int y = 0;
+    
+    while (game->map[y])
     {
-        for (x = 0; x < game->map_width; x++)
+        printf("%d", game->map_width);
+        x = 0;
+        while (game->map[y][x])
         {
+            /* printf("%d", game->map_width); */
+           /*  printf("%s\n", game->map[y]);
+            printf("%s", game->map[x]); */
             if (game->map[y][x] == WALL)
                 mlx_put_image_to_window(game->mlx, game->win, game->wall_img, x * TILE_SIZE, y * TILE_SIZE);
             else if (game->map[y][x] == PLAYER)
@@ -47,6 +55,8 @@ void render_map(t_game *game)
                 mlx_put_image_to_window(game->mlx, game->win, game->coin_img, x * TILE_SIZE, y * TILE_SIZE);
             else if (game->map[y][x] == EXIT)
                 mlx_put_image_to_window(game->mlx, game->win, game->exit_img, x * TILE_SIZE, y * TILE_SIZE);
+            x++;
         }
+        y++;
     }
-} */
+}

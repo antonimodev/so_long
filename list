@@ -1,0 +1,15 @@
+t_game:
+
+mlx         
+win 
+wall_img 
+player_img
+coin_img
+exit_img
+coins_collected
+----------
+map_width
+map_height
+map
+player_pos
+entities
