@@ -47,6 +47,7 @@ typedef struct s_game
 {
     void        *mlx;           	// Conexión con MiniLibX
     void        *win;           	// Ventana del juego
+    void        *floor_img;         // Imagen del suelo
     void        *wall_img;      	// Imagen de la pared
     void        *player_img;    	// Imagen del jugador
     void        *coin_img;      	// Imagen de la moneda

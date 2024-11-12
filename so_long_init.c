@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:37:47 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/12 12:43:04 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:31:03 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,43 @@ void init_mlx(t_game *game)
     }
 }
 
-void render_map(t_game *game)
+// Función para inicializar un sprite y así poder trabajar con él.
+void    init_sprites(t_game *game)
+{
+    //int   width; ??
+    //int   height; ??
+
+    //mlx_xpm_file_to_image -> prepara el archivo xpm para poder trabajar con él después
+    game->floor_img = mlx_xpm_file_to_image(game->mlx, "filename", width, height); // en principio 32x32
+    // Deberíamos hacer lo mismo con todos
+    game->wall_img;
+    game->player_img;
+    game->coin_img;
+    game->exit_img;
+}
+
+/* void render_map(t_game *game)
 {
     int x = 0;
     int y = 0;
     
     while (game->map[y])
     {
-        printf("%d", game->map_width);
         x = 0;
-        while (game->map[y][x])
+        while (game->map[x][y])
         {
-            /* printf("%d", game->map_width); */
-           /*  printf("%s\n", game->map[y]);
-            printf("%s", game->map[x]); */
-            if (game->map[y][x] == WALL)
+            if (game->map[x][y] == FLOOR)
+                mlx_put_image_to_window(game->mlx, game->win, game->floor_img, x * TILE_SIZE, y * TILE_SIZE);
+            else if (game->map[x][y] == WALL)
                 mlx_put_image_to_window(game->mlx, game->win, game->wall_img, x * TILE_SIZE, y * TILE_SIZE);
-            else if (game->map[y][x] == PLAYER)
+            else if (game->map[x][y] == PLAYER)
                 mlx_put_image_to_window(game->mlx, game->win, game->player_img, x * TILE_SIZE, y * TILE_SIZE);
-            else if (game->map[y][x] == COIN)
+            else if (game->map[x][y] == COIN)
                 mlx_put_image_to_window(game->mlx, game->win, game->coin_img, x * TILE_SIZE, y * TILE_SIZE);
-            else if (game->map[y][x] == EXIT)
+            else if (game->map[x][y] == EXIT)
                 mlx_put_image_to_window(game->mlx, game->win, game->exit_img, x * TILE_SIZE, y * TILE_SIZE);
             x++;
         }
         y++;
     }
-}
+} */

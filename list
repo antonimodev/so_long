@@ -1,7 +1,8 @@
 t_game:
 
 mlx         
-win 
+win
+floor_img
 wall_img 
 player_img
 coin_img
