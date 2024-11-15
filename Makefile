@@ -1,7 +1,7 @@
 # Variables #
 NAME = so_long
 CC = gcc
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
 # Libraries #
@@ -14,7 +14,8 @@ MLX = $(MLX_DIR)/libmlx.a
 MAKE_LIB = make --no-print-directory
 
 # So long sources #
-SO_LONG_SRC = main.c map_validation.c validations.c validations_utils.c set_map.c so_long_init.c
+SO_LONG_SRC = main.c map_validation.c validations.c validations_utils.c set_map.c so_long_init.c \
+			free.c sprites_utils.c
 
 # So long objects #
 SO_LONG_OBJ = $(addprefix obj/, $(SO_LONG_SRC:.c=.o))

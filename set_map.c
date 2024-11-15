@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:02:59 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/12 11:04:16 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:20:54 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	set_map(t_game *game, char *map_file)
 	
 	super_line = txt_to_line(map_file);
     game->map = ft_split(super_line, '\n');
+	game->map_copy = ft_split(super_line, '\n');
     free(super_line);
 }

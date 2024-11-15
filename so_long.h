@@ -17,7 +17,7 @@
 # include "lib/minilibx/mlx.h"
 # include "lib/libft/libft.h"
 
-#define TILE_SIZE 32
+#define TILE_SIZE 500
 
 // Entities definition
 # define FLOOR '0'
@@ -43,16 +43,24 @@ typedef	struct s_coords
 	int	y;
 }	t_coords;
 
+typedef struct s_image
+{
+	void	*img;
+	int		x;
+	int		y;
+}	t_image;
+
 typedef struct s_game
 {
     void        *mlx;           	// Conexión con MiniLibX
     void        *win;           	// Ventana del juego
-    void        *floor_img;         // Imagen del suelo
-    void        *wall_img;      	// Imagen de la pared
-    void        *player_img;    	// Imagen del jugador
-    void        *coin_img;      	// Imagen de la moneda
-    void        *exit_img;      	// Imagen de la salida
+    t_image     floor_img;          // Imagen del suelo
+    t_image     wall_img;       	// Imagen de la pared
+    t_image     player_img;     	// Imagen del jugador
+    t_image     coin_img;       	// Imagen de la moneda
+    t_image     exit_img;       	// Imagen de la salida
     char        **map;          	// Mapa del juego
+    char        **map_copy;        	// copia del mapa del juego
     int         map_width;      	// Ancho del mapa
     int         map_height;     	// Alto del mapa
     t_coords    player_pos;     	// Posición del jugador
@@ -86,6 +94,18 @@ void		find_player(char **map, t_coords *player_cords);
 
 // so_long_init.c
 void        init_mlx(t_game *game);
+void        init_sprites(t_game *game);
+
+// sprite_utils.c
+t_image     new_sprite(t_game *game, char *path, const char *entity);
+void        destroy_images(t_game *game);
+
+// free.c
+void        free_all(t_game *game);
+
+// placeholder
 void        render_map(t_game *game);
+void        find_sprite(t_game *game, int y, int x);
+void        render_sprite(t_game *game, t_image sprite, int line, int column);
 
 #endif
