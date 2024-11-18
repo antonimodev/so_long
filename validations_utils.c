@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:38:27 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/15 14:16:08 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:45:46 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ void flood_fill(int x, int y, int *coins, char **map, bool *exit)
 void reachable_entities(char **lines, t_entities entities, t_coords p_coords)
 {
 	bool        exit;
+	/* int			coins; */
 
+	/* coins = entities.coin_counter; */
     exit = false;
 	flood_fill(p_coords.x, p_coords.y, &entities.coin_counter, lines, &exit);
 	if (entities.coin_counter > 0 || !exit)

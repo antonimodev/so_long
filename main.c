@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:17:05 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/15 14:08:46 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:41:50 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int main(void)
     init_sprites(&game);
     render_map(&game);
     mlx_loop(game.mlx);
+    mlx_hook(game.win, KeyPress, KeyPressMask, ft_handle_input(), &game);
+
     free_all(&game);
-    
     printf("\n\n ----------------- GUCCI ----------------- \n\n");
     return (0);
 }

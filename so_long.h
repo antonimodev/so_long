@@ -17,7 +17,7 @@
 # include "lib/minilibx/mlx.h"
 # include "lib/libft/libft.h"
 
-#define TILE_SIZE 500
+#define TILE_SIZE 32
 
 // Entities definition
 # define FLOOR '0'
@@ -26,6 +26,20 @@
 # define COIN 'C'
 # define EXIT 'E'
 # define VISITED 'V' // Added VISITED definition
+
+// Movements key ASCII
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+
+# define KEY_UP  			65362
+# define KEY_LEFT  			65361
+# define KEY_RIGHT 			65363
+# define KEY_DOWN  			65364
+
+# define KEY_Q				113
+# define KEY_ESC  			65307
 
 
 // Entities struct (Player, Collectibles and Exit)
@@ -99,6 +113,9 @@ void        init_sprites(t_game *game);
 // sprite_utils.c
 t_image     new_sprite(t_game *game, char *path, const char *entity);
 void        destroy_images(t_game *game);
+
+// handle_input.c
+int         handle_input(int key, t_game *game);
 
 // free.c
 void        free_all(t_game *game);

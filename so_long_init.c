@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:37:47 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/15 14:23:23 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:40:10 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	find_sprite(t_game *game, int y, int x)
 
 void	render_sprite(t_game *game, t_image sprite, int line, int column)
 {
-	mlx_put_image_to_window(game->mlx, game->win, sprite.img, column * TILE_SIZE, line * TILE_SIZE);
+	mlx_put_image_to_window(game->mlx, game->win, sprite.img, \
+	column * TILE_SIZE, line * TILE_SIZE);
 }

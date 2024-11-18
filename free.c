@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:54:04 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/15 13:57:50 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:47:03 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void    free_all(t_game *game)
 {
     destroy_images(game);
     free_matrix(game->map);
+    free_matrix(game->map_copy);
     mlx_destroy_window(game->mlx, game->win);
     mlx_destroy_display(game->mlx);
     free(game->mlx);
