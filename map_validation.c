@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:21:46 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/12 11:04:42 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:09:27 by frmarian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void map_validation(t_game *game, char *map_file)
     find_player(game->map, &game->player_pos);
     reachable_entities(game->map, game->entities, game->player_pos);
 	set_map_dimension(game);
+	set_move_counter(game);
     /* free_matrix(game->map); */
 }
 

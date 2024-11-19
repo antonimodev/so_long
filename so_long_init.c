@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:37:47 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/18 13:40:10 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:53:03 by frmarian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,23 @@ void    init_sprites(t_game *game)
     game->wall_img = new_sprite(game, "images/wall.xpm", "Wall");
 }
 
-void	render_map(t_game *game)
+int render_map(t_game *game)
 {
-	int	x;
-	int	y;
+    int x;
+    int y;
 
-	y = 0;
-	while (game->map_copy[y])
-	{
-		x = 0;
-		while (game->map_copy[y][x])
-		{
-			find_sprite(game, y, x);
-			x++;
-		}
-		y++;
-	}
+    y = 0;
+    while (game->map_copy[y])
+    {
+        x = 0;
+        while (game->map_copy[y][x])
+        {
+            find_sprite(game, y, x);
+            x++;
+        }
+        y++;
+    }
+    return 0; // Ensure the function returns an integer value
 }
 
 void	find_sprite(t_game *game, int y, int x)

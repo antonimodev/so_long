@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:02:59 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/15 14:20:54 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:08:51 by frmarian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	set_map_dimension(t_game *game)
 {
 	game->map_height = matrixlen(game->map);
 	game->map_width = ft_strlen_gnl(game->map[0]);
+}
+
+void	set_move_counter(t_game *game)
+{
+	game->move_counter = 0;
 }
 
 void	set_map(t_game *game, char *map_file)

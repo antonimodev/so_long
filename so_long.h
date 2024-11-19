@@ -77,9 +77,9 @@ typedef struct s_game
     char        **map_copy;        	// copia del mapa del juego
     int         map_width;      	// Ancho del mapa
     int         map_height;     	// Alto del mapa
+	int			move_counter;		// Contador de movimientos
     t_coords    player_pos;     	// Posición del jugador
     t_entities  entities;       	// Entidades del juego
-    int         coins_collected;	// Monedas recogidas
 } t_game;
 
 // Map_validation.c
@@ -116,13 +116,20 @@ void        destroy_images(t_game *game);
 
 // handle_input.c
 int         handle_input(int key, t_game *game);
+void		move_player(t_game *game, int new_x, int new_y);
 
 // free.c
 void        free_all(t_game *game);
 
 // placeholder
-void        render_map(t_game *game);
+int        render_map(t_game *game);
 void        find_sprite(t_game *game, int y, int x);
 void        render_sprite(t_game *game, t_image sprite, int line, int column);
+
+//
+void	victory(t_game *game);
+void	close_game(t_game *game);
+void	print_movements(t_game *game);
+void	set_move_counter(t_game *game);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:22:19 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/07 13:33:57 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:12:15 by frmarian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	*ft_calloc_gnl(size_t size, size_t type);
 char	**create_matrix(int n);
 void	free_matrix(char **matrix);
 int		matrixlen(char **matrix);
+void	print_matrix(char **matrix);
 
 typedef struct s_pipe
 {

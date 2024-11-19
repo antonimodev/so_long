@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:47:34 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/07 13:07:24 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:11:53 by frmarian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,23 @@ int	matrixlen(char **matrix)
 	while (matrix[i])
 		i++;
 	return (i);
+}
+void	print_matrix(char **matrix)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (matrix[x])
+	{
+		y = 0;
+		while (matrix[x][y])
+		{
+			printf("%c", matrix[x][y]);
+			y++;
+		}
+		printf("\n");
+		x++;
+	}
 }
