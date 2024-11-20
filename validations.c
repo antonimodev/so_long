@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:27:48 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:26:53 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:33:34 by frmarian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@ void	validate_edges(char **lines)
 {
 	if (!all_chars_same(lines[0], WALL)
 		|| !all_chars_same(lines[(matrixlen(lines) - 1)], WALL))
-		{
-			free_matrix(lines);
-			error_msg("Error: validate_edges: chr differs from '1'");
-		}
+	{
+		free_matrix(lines);
+		error_msg("Error: validate_edges: chr differs from '1'");
+	}
 }
+
 void	validate_body(char **lines, t_entities *entities)
 {
 	int	len;
 	int	i;
 
 	entities->player_counter = 0;
-	entities->coin_counter = 0; // Changed from collectible_counter to coin_counter
+	entities->coin_counter = 0;
 	entities->exit_counter = 0;
 	len = ft_strlen_gnl(lines[0]);
 	i = 1;
@@ -62,9 +63,9 @@ void	validate_entities(t_entities *entities, char **lines)
 {
 	if (entities->player_counter != 1
 		|| entities->exit_counter != 1
-		|| entities->coin_counter < 1) // Changed from collectible_counter to coin_counter
-		{
-			free_matrix(lines);
-			error_msg("Error: validate_entities: wrong entities counter");
-		}
+		|| entities->coin_counter < 1)
+	{
+		free_matrix(lines);
+		error_msg("Error: validate_entities: wrong entities counter");
+	}
 }

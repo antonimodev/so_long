@@ -17,7 +17,7 @@
 # include "lib/minilibx/mlx.h"
 # include "lib/libft/libft.h"
 
-#define TILE_SIZE 32
+# define TILE_SIZE 32
 
 // Entities definition
 # define FLOOR '0'
@@ -41,17 +41,14 @@
 # define KEY_Q				113
 # define KEY_ESC  			65307
 
-
-// Entities struct (Player, Collectibles and Exit)
 typedef struct s_entities
 {
 	int	player_counter;
 	int	exit_counter;
-	int	coin_counter; // Changed from collectible_counter to coin_counter
+	int	coin_counter;
 }	t_entities;
 
-// Map coords (x, y)
-typedef	struct s_coords
+typedef struct s_coords
 {
 	int	x;
 	int	y;
@@ -66,31 +63,31 @@ typedef struct s_image
 
 typedef struct s_game
 {
-    void        *mlx;           	// Conexión con MiniLibX
-    void        *win;           	// Ventana del juego
-    t_image     floor_img;          // Imagen del suelo
-    t_image     wall_img;       	// Imagen de la pared
-    t_image     player_img;     	// Imagen del jugador
-    t_image     coin_img;       	// Imagen de la moneda
-    t_image     exit_img;       	// Imagen de la salida
-    char        **map;          	// Mapa del juego
-    char        **map_copy;        	// copia del mapa del juego
-    int         map_width;      	// Ancho del mapa
-    int         map_height;     	// Alto del mapa
-	int			move_counter;		// Contador de movimientos
-    t_coords    player_pos;     	// Posición del jugador
-    t_entities  entities;       	// Entidades del juego
-} t_game;
+	void		*mlx;
+	void		*win;
+	t_image		floor_img;
+	t_image		wall_img;
+	t_image		player_img;
+	t_image		coin_img;
+	t_image		exit_img;
+	char		**map;
+	char		**map_copy;
+	int			map_width;
+	int			map_height;
+	int			move_counter;
+	t_coords	player_pos;
+	t_entities	entities;
+}	t_game;
 
 // Map_validation.c
 void		map_validation(t_game *game, char *map);
 char		*txt_to_line(char *txt);
 char		*process_txt(int fd);
-void	    validate_extension(char *file);
+void		validate_extension(char *file);
 
 // set_map.c
-void	    set_map_dimension(t_game *game);
-void        set_map(t_game *game, char *file);
+void		set_map_dimension(t_game *game);
+void		set_map(t_game *game, char *file);
 
 // Validations.c
 void		validate_edges(char **lines);
@@ -102,34 +99,35 @@ bool		validate_len(char *str, int len);
 // Validations_utils.c
 void		count_entities(char *line, t_entities *entities);
 char		*gnl_cat(char *s1, char *s2);
-void		reachable_entities(char **lines, t_entities entities, t_coords p_coords);
-void		flood_fill(int x, int y, int *coins, char **map, bool *exit);
+void		reachable_entities(char **lines, t_entities entities, \
+			t_coords p_coords);
+void		flood_fill(int x, int y, t_entities *entities, char **map);
 void		find_player(char **map, t_coords *player_cords);
 
 // so_long_init.c
-void        init_mlx(t_game *game);
-void        init_sprites(t_game *game);
+void		init_mlx(t_game *game);
+void		init_sprites(t_game *game);
 
 // sprite_utils.c
-t_image     new_sprite(t_game *game, char *path, const char *entity);
-void        destroy_images(t_game *game);
+t_image		new_sprite(t_game *game, char *path, const char *entity);
+void		destroy_images(t_game *game);
 
 // handle_input.c
-int         handle_input(int key, t_game *game);
+int			handle_input(int key, t_game *game);
 void		move_player(t_game *game, int new_x, int new_y);
 
 // free.c
-void        free_all(t_game *game);
+void		free_all(t_game *game);
 
 // placeholder
-int        render_map(t_game *game);
-void        find_sprite(t_game *game, int y, int x);
-void        render_sprite(t_game *game, t_image sprite, int line, int column);
+int			render_map(t_game *game);
+void		find_sprite(t_game *game, int y, int x);
+void		render_sprite(t_game *game, t_image sprite, int line, int column);
 
 //
-void	victory(t_game *game);
-void	close_game(t_game *game);
-void	print_movements(t_game *game);
-void	set_move_counter(t_game *game);
+void		victory(t_game *game);
+int			close_game(t_game *game);
+void		print_movements(t_game *game);
+void		set_move_counter(t_game *game);
 
 #endif
