@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:21:46 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/20 11:30:51 by frmarian         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:22:20 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ void	map_validation(t_game *game, char *map_file)
 	set_move_counter(game);
 }
 
-void	validate_extension(char *map)
+void validate_extension(char *map)
 {
-	if (ft_strncmp(ft_strrchr(map, '.'), ".ber", 5))
-		error_msg("Error: not valid extension.");
+    const char *extension = ft_strrchr(map, '.');
+    if (!extension || ft_strncmp(extension, ".ber", 4) != 0)
+    {
+        error_msg("Error: not valid extension.");
+    }
 }
 
 char	*txt_to_line(char *txt)

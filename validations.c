@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:27:48 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/20 11:33:34 by frmarian         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:46:56 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	validate_entities(t_entities *entities, char **lines)
+{
+	if (entities->player_counter != 1
+		|| entities->exit_counter != 1
+		|| entities->coin_counter < 1)
+	{
+		free_matrix(lines);
+		error_msg("Error: validate_entities: wrong entities counter");
+	}
+}
 
 void	validate_edges(char **lines)
 {
@@ -57,15 +68,4 @@ bool	validate_len(char *str, int len)
 	if (ft_strlen_gnl(str) != len)
 		return (false);
 	return (true);
-}
-
-void	validate_entities(t_entities *entities, char **lines)
-{
-	if (entities->player_counter != 1
-		|| entities->exit_counter != 1
-		|| entities->coin_counter < 1)
-	{
-		free_matrix(lines);
-		error_msg("Error: validate_entities: wrong entities counter");
-	}
 }

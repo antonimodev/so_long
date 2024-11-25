@@ -14,7 +14,7 @@ MLX = $(MLX_DIR)/libmlx.a
 MAKE_LIB = make --no-print-directory
 
 # So long sources #
-SO_LONG_SRC = main.c map_validation.c validations.c validations_utils.c set_map.c so_long_init.c \
+SO_LONG_SRC = so_long.c map_validation.c validations.c validations_utils.c set_map.c so_long_init.c \
 			free.c sprites_utils.c handle_input.c
 
 # So long objects #

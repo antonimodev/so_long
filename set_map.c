@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:02:59 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/20 11:31:32 by frmarian         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:53:16 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:47:34 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/19 13:11:53 by frmarian         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:58:52 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

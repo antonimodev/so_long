@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frmarian <frmarian@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:37:47 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/20 11:42:14 by frmarian         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:53:47 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,11 @@ void	init_mlx(t_game *game)
 	}
 }
 
-void	init_sprites(t_game *game)
+void	hooks_mlx(t_game *game)
 {
-	game->floor_img = new_sprite(game, "images/floor.xpm", "Floor");
-	game->player_img = new_sprite(game, "images/player.xpm", "Player");
-	game->coin_img = new_sprite(game, "images/coin.xpm", "Coin");
-	game->exit_img = new_sprite(game, "images/exit.xpm", "Exit");
-	game->wall_img = new_sprite(game, "images/wall.xpm", "Wall");
+	mlx_hook(game->win, KeyPress, KeyPressMask, handle_input, game);
+	mlx_hook(game->win, DestroyNotify, ButtonPressMask, close_game, game);
+	mlx_hook(game->win, Expose, ExposureMask, render_map, game);
 }
 
 int	render_map(t_game *game)
@@ -59,27 +57,4 @@ int	render_map(t_game *game)
 		y++;
 	}
 	return (0);
-}
-
-void	find_sprite(t_game *game, int y, int x)
-{
-	char	coords;
-
-	coords = game->map_copy[y][x];
-	if (coords == WALL)
-		render_sprite(game, game->wall_img, y, x);
-	else if (coords == FLOOR)
-		render_sprite(game, game->floor_img, y, x);
-	else if (coords == COIN)
-		render_sprite(game, game->coin_img, y, x);
-	else if (coords == EXIT)
-		render_sprite(game, game->exit_img, y, x);
-	else if (coords == PLAYER)
-		render_sprite(game, game->player_img, y, x);
-}
-
-void	render_sprite(t_game *game, t_image sprite, int line, int column)
-{
-	mlx_put_image_to_window(game->mlx, game->win, sprite.img, \
-	column * TILE_SIZE, line * TILE_SIZE);
 }

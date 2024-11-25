@@ -5,26 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 12:13:52 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/11 11:34:29 by antonimo         ###   ########.fr       */
+/*   Created: 2024/11/08 11:17:05 by antonimo          #+#    #+#             */
+/*   Updated: 2024/11/25 14:20:50 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
-/* int	main(void)
+int	main(int ac, char **av)
 {
-	void	*mlx_ptr;
-	void	*window_ptr;
+	t_game	game;
 
-	mlx_ptr = mlx_init();
-	if (!mlx_ptr)
-		return (1);
-	window_ptr = mlx_new_window(mlx_ptr, 600, 400, "hi :)");
-	if (!window_ptr)
-		return (free(mlx_ptr), 1);
-	mlx_destroy_window(mlx_ptr, window_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
+	if (ac == 2)
+	{
+		map_validation(&game, av[1]);
+		init_mlx(&game);
+		init_sprite(&game);
+		render_map(&game);
+		hooks_mlx(&game);
+		mlx_loop(game.mlx);
+	}
+	else
+		error_msg("Enter valid argument");
 	return (0);
-} */
+}
