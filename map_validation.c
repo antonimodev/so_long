@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:21:46 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/25 14:22:20 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:05:47 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	map_validation(t_game *game, char *map_file)
 {
 	validate_extension(map_file);
 	set_map(game, map_file);
-	validate_edges(game->map);
-	validate_body(game->map, &game->entities);
+	validate_edges(*game);
+	validate_body(*game, &game->entities);
 	find_player(game->map, &game->player_pos);
-	reachable_entities(game->map, game->entities, game->player_pos);
+	reachable_entities(*game, game->entities, game->player_pos);
 	set_map_dimension(game);
 	set_move_counter(game);
 }
@@ -29,7 +29,7 @@ void validate_extension(char *map)
     const char *extension = ft_strrchr(map, '.');
     if (!extension || ft_strncmp(extension, ".ber", 4) != 0)
     {
-        error_msg("Error: not valid extension.");
+        error_msg("Error validate_extension: not valid extension.");
     }
 }
 
@@ -56,7 +56,7 @@ char	*process_txt(int fd)
 	if (!gnl_line)
 	{
 		free(super_line);
-		error_msg("Error: converting text to line");
+		error_msg("Error process_txt: converting text to line");
 	}
 	while (gnl_line)
 	{
@@ -64,5 +64,26 @@ char	*process_txt(int fd)
 		free(gnl_line);
 		gnl_line = get_next_line(fd);
 	}
+	if (!check_line(super_line))
+	{
+		free(super_line);
+		error_msg("Error check_line: there is an invalid character");
+	}
 	return (super_line);
+}
+
+bool	check_line(char *line)
+{
+    while (*line)
+    {
+        if (*line != PLAYER
+        && *line != COIN
+        && *line != EXIT
+        && *line != WALL
+        && *line != FLOOR
+        && *line != '\n')
+            return (false);
+        line++;
+    }
+    return (true);
 }

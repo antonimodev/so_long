@@ -6,27 +6,17 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 14:23:55 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/25 13:19:37 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:55:25 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	handle_input(int key, t_game *game)
+void	print_movements(t_game *game)
 {
-	if (key == KEY_W || key == KEY_UP)
-		move_player(game, game->player_pos.x - 1, game->player_pos.y);
-	if (key == KEY_A || key == KEY_LEFT)
-		move_player(game, game->player_pos.x, game->player_pos.y - 1);
-	if (key == KEY_S || key == KEY_DOWN)
-		move_player(game, game->player_pos.x + 1, game->player_pos.y);
-	if (key == KEY_D || key == KEY_RIGHT)
-		move_player(game, game->player_pos.x, game->player_pos.y + 1);
-	if (key == KEY_Q || key == KEY_ESC)
-		close_game(game);
-	return (0);
+	game->move_counter++;
+	printf("Movements: %d.\n", game->move_counter);
 }
-
 void	move_player(t_game *game, int new_x, int new_y)
 {
 	int	last_x;
@@ -96,8 +86,17 @@ int	close_game(t_game *game)
 	return (0);
 }
 
-void	print_movements(t_game *game)
+int	handle_input(int key, t_game *game)
 {
-	game->move_counter++;
-	printf("Movements: %d.\n", game->move_counter);
+	if (key == KEY_W || key == KEY_UP)
+		move_player(game, game->player_pos.x - 1, game->player_pos.y);
+	if (key == KEY_A || key == KEY_LEFT)
+		move_player(game, game->player_pos.x, game->player_pos.y - 1);
+	if (key == KEY_S || key == KEY_DOWN)
+		move_player(game, game->player_pos.x + 1, game->player_pos.y);
+	if (key == KEY_D || key == KEY_RIGHT)
+		move_player(game, game->player_pos.x, game->player_pos.y + 1);
+	if (key == KEY_Q || key == KEY_ESC)
+		close_game(game);
+	return (0);
 }

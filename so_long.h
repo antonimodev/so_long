@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:54:35 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/25 13:52:43 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:06:26 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "/usr/include/X11/X.h"
 # include "lib/libft/libft.h"
 
-# define TILE_SIZE 32
+# define TILE_SIZE 70
 
 // Entities definition
 # define FLOOR				'0'
@@ -86,24 +86,25 @@ void		map_validation(t_game *game, char *map);
 void		validate_extension(char *file);
 char		*txt_to_line(char *txt);
 char		*process_txt(int fd);
+bool		check_line(char *line);
 
 // set_map.c
 void		set_map_dimension(t_game *game);
 void		set_move_counter(t_game *game);
 void		set_map(t_game *game, char *file);
 
-// Validations.c
-void		validate_entities(t_entities *entities, char **lines);
-void		validate_edges(char **lines);
-void		validate_body(char **lines, t_entities *entities);
+// validations.c
+void		validate_entities(t_entities *entities, t_game game);
+void		validate_edges(t_game game);
+void		validate_body(t_game game, t_entities *entities);
 bool		validate_walls(char *lines);
 bool		validate_len(char *str, int len);
 
-// Validations_utils.c
+// validations_utils.c
 void		count_entities(char *line, t_entities *entities);
 void		find_player(char **map, t_coords *player_cords);
 void		flood_fill(int x, int y, t_entities *entities, char **map);
-void		reachable_entities(char **lines, t_entities entities, \
+void		reachable_entities(t_game game, t_entities entities, \
 			t_coords p_coords);
 char		*gnl_cat(char *s1, char *s2);
 
@@ -119,16 +120,14 @@ void		render_sprite(t_game *game, t_image sprite, int line, int column);
 t_image		new_sprite(t_game *game, char *path, const char *entity);
 
 // handle_input.c
-int			handle_input(int key, t_game *game);
 void		move_player(t_game *game, int new_x, int new_y);
+void		print_movements(t_game *game);
 void		victory(t_game *game);
 int			close_game(t_game *game);
-void		print_movements(t_game *game);
+int			handle_input(int key, t_game *game);
 
 // free.c
 void		destroy_images(t_game *game);
 void		free_all(t_game *game);
-
-//
 
 #endif

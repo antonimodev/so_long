@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:38:27 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/25 13:47:21 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:06:12 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	find_player(char **map, t_coords *player_pos)
 		player_pos->x++;
 	}
 	free_matrix(map);
-	error_msg("Error: player not found");
+	error_msg("Error find_player: player not found");
 }
 
 void	flood_fill(int x, int y, t_entities *entities, char **map)
@@ -55,13 +55,14 @@ void	flood_fill(int x, int y, t_entities *entities, char **map)
 	flood_fill(x, y - 1, entities, map);
 }
 
-void	reachable_entities(char **lines, t_entities entities, t_coords p_coords)
+void	reachable_entities(t_game game, t_entities entities, t_coords p_coords)
 {
-	flood_fill(p_coords.x, p_coords.y, &entities, lines);
+	flood_fill(p_coords.x, p_coords.y, &entities, game.map);
 	if (entities.coin_counter > 0 || entities.exit_counter != 2)
 	{
-		free_matrix(lines);
-		error_msg("Error: No valid exit found or coins remaining");
+		free_matrix(game.map);
+		free_matrix(game.map_copy);
+		error_msg("Error reachable_entities: No valid exit found or coins remaining");
 	}
 }
 
