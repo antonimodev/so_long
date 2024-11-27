@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:21:46 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:05:47 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:03:07 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	map_validation(t_game *game, char *map_file)
 void validate_extension(char *map)
 {
     const char *extension = ft_strrchr(map, '.');
-    if (!extension || ft_strncmp(extension, ".ber", 4) != 0)
+    if (!extension || ft_strncmp(extension, ".ber", 5) != 0)
     {
         error_msg("Error validate_extension: not valid extension.");
     }
