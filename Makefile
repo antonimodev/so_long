@@ -39,6 +39,7 @@ $(NAME): $(SO_LONG_OBJ) $(LIBFT) $(MLX)
 clean:
 	@$(RM) obj
 	@$(RM) $(LIBFT_DIR)/obj
+	@$(RM) $(MLX_DIR)/obj
 	@$(RM) $(LIBFT_DIR)/.DS_Store
 	@$(RM) $(LIBFT_DIR)/.vscode
 	@echo Objects removed
