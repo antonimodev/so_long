@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:47:34 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/25 13:58:52 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:16:28 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	matrixlen(char **matrix)
 		i++;
 	return (i);
 }
+
 void	print_matrix(char **matrix)
 {
 	int	x;

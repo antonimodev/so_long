@@ -15,7 +15,7 @@ MAKE_LIB = make --no-print-directory
 
 # So long sources #
 SO_LONG_SRC = so_long.c map_validation.c validations.c validations_utils.c set_map.c so_long_init.c \
-			free.c sprites_utils.c handle_input.c
+			free.c sprites_utils.c handle_input.c finish.c
 
 # So long objects #
 SO_LONG_OBJ = $(addprefix obj/, $(SO_LONG_SRC:.c=.o))
@@ -48,6 +48,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(LIBFT_DIR)/libft.a
 	@$(RM) $(MLX_DIR)/libmlx.a
+	@$(RM) $(MLX_DIR)/libmlx_Linux.a
 
 re: fclean all
 

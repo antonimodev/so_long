@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:52:43 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/25 14:27:32 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:10:40 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_sprite(t_game *game)
 {
 	game->floor_img = new_sprite(game, "textures/floor.xpm", "Floor");
 	game->player_img = new_sprite(game, "textures/player.xpm", "Player");
+	game->on_exit_img = new_sprite(game, "textures/on_exit.xpm", "On exit");
 	game->coin_img = new_sprite(game, "textures/coin.xpm", "Coin");
 	game->exit_img = new_sprite(game, "textures/exit.xpm", "Exit");
 	game->wall_img = new_sprite(game, "textures/wall.xpm", "Wall");
@@ -36,6 +37,8 @@ void	find_sprite(t_game *game, int y, int x)
 		render_sprite(game, game->exit_img, y, x);
 	else if (coords == PLAYER)
 		render_sprite(game, game->player_img, y, x);
+	else if (coords == ON_EXIT)
+		render_sprite(game, game->on_exit_img, y, x);
 }
 
 void	render_sprite(t_game *game, t_image sprite, int line, int column)

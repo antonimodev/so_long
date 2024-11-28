@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:54:35 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/27 13:14:17 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:55:49 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define PLAYER				'P'
 # define COIN				'C'
 # define EXIT				'E'
+# define ON_EXIT			'X'
 # define VISITED			'V'
 
 // Movements key ASCII
@@ -67,6 +68,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	t_image		on_exit_img;
 	t_image		floor_img;
 	t_image		wall_img;
 	t_image		player_img;
@@ -120,14 +122,17 @@ void		render_sprite(t_game *game, t_image sprite, int line, int column);
 t_image		new_sprite(t_game *game, char *path, const char *entity);
 
 // handle_input.c
-void		move_player(t_game *game, int new_x, int new_y);
 void		print_movements(t_game *game);
-void		victory(t_game *game);
-int			close_game(t_game *game);
+void		update_map(t_game *game, t_coords new, t_coords last);
+void		move_player(t_game *game, int new_x, int new_y);
 int			handle_input(int key, t_game *game);
 
 // free.c
 void		destroy_images(t_game *game);
 void		free_all(t_game *game);
+
+// finish.c
+void		victory(t_game *game);
+int			close_game(t_game *game);
 
 #endif

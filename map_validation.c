@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:21:46 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/27 13:03:07 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:01:52 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ void	map_validation(t_game *game, char *map_file)
 	set_move_counter(game);
 }
 
-void validate_extension(char *map)
+void	validate_extension(char *map)
 {
-    const char *extension = ft_strrchr(map, '.');
-    if (!extension || ft_strncmp(extension, ".ber", 5) != 0)
-    {
-        error_msg("Error validate_extension: not valid extension.");
-    }
+	const char	*extension;
+
+	extension = ft_strrchr(map, '.');
+	if (!extension || ft_strncmp(extension, ".ber", 5) != 0)
+	{
+		error_msg("Error validate_extension: not valid extension.");
+	}
 }
 
 char	*txt_to_line(char *txt)
@@ -40,7 +42,7 @@ char	*txt_to_line(char *txt)
 
 	fd = open(txt, O_RDONLY);
 	if (fd == -1)
-		return (NULL);
+		error_msg("Error opening file: invalid file");
 	super_line = process_txt(fd);
 	close(fd);
 	return (super_line);
@@ -74,16 +76,16 @@ char	*process_txt(int fd)
 
 bool	check_line(char *line)
 {
-    while (*line)
-    {
-        if (*line != PLAYER
-        && *line != COIN
-        && *line != EXIT
-        && *line != WALL
-        && *line != FLOOR
-        && *line != '\n')
-            return (false);
-        line++;
-    }
-    return (true);
+	while (*line)
+	{
+		if (*line != PLAYER
+			&& *line != COIN
+			&& *line != EXIT
+			&& *line != WALL
+			&& *line != FLOOR
+			&& *line != '\n')
+			return (false);
+		line++;
+	}
+	return (true);
 }

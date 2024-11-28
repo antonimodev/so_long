@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:54:04 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/25 13:19:34 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:07:04 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	destroy_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->coin_img.img);
 	if (game->exit_img.img)
 		mlx_destroy_image(game->mlx, game->exit_img.img);
+	if (game->on_exit_img.img)
+		mlx_destroy_image(game->mlx, game->on_exit_img.img);
 }
 
 void	free_all(t_game *game)

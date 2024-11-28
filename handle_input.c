@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 14:23:55 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/26 11:55:25 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:54:15 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,73 +17,47 @@ void	print_movements(t_game *game)
 	game->move_counter++;
 	printf("Movements: %d.\n", game->move_counter);
 }
+
+void	update_map(t_game *game, t_coords new, t_coords last)
+{
+	if (game->map_copy[new.x][new.y] == EXIT)
+	{
+		game->map_copy[new.x][new.y] = ON_EXIT;
+		game->map_copy[last.x][last.y] = FLOOR;
+	}
+	else if (game->map_copy[last.x][last.y] == ON_EXIT)
+	{
+		game->map_copy[new.x][new.y] = PLAYER;
+		game->map_copy[last.x][last.y] = EXIT;
+	}
+	else
+	{
+		game->map_copy[new.x][new.y] = PLAYER;
+		game->map_copy[last.x][last.y] = FLOOR;
+	}
+}
+
 void	move_player(t_game *game, int new_x, int new_y)
 {
-	int	last_x;
-	int	last_y;
+	t_coords	new;
+	t_coords	last;
 
-	last_x = game->player_pos.x;
-	last_y = game->player_pos.y;
-	if (game->map_copy[new_x][new_y] == WALL
-	|| (game->map_copy[new_x][new_y] == EXIT && game->entities.coin_counter))
+	new.x = new_x;
+	new.y = new_y;
+	last.x = game->player_pos.x;
+	last.y = game->player_pos.y;
+	if (game->map_copy[new.x][new.y] == WALL)
 		return ;
-	if (game->map_copy[new_x][new_y] == EXIT
+	if (game->map_copy[new.x][new.y] == EXIT
 	&& game->entities.coin_counter == 0)
 		victory(game);
-	if (game->map_copy[new_x][new_y] == COIN)
+	if (game->map_copy[new.x][new.y] == COIN)
 		game->entities.coin_counter--;
-	game->player_pos.x = new_x;
-	game->player_pos.y = new_y;
-	game->map_copy[new_x][new_y] = PLAYER;
-	game->map_copy[last_x][last_y] = FLOOR;
+	game->player_pos.x = new.x;
+	game->player_pos.y = new.y;
+	update_map(game, new, last);
 	print_movements(game);
 	render_map(game);
-}
-
-void	victory(t_game *game)
-{
-	print_movements(game);
-	printf("\n");
-	printf("███████████████████████████████████████████████████████████████\n");
-	printf("█▌                                                           ▐█\n");
-	printf("█▌  ██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗  ▐█\n");
-	printf("█▌  ██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝  ▐█\n");
-	printf("█▌  ██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝   ▐█\n");
-	printf("█▌  ╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝    ▐█\n");
-	printf("█▌   ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║     ▐█\n");
-	printf("█▌    ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝     ▐█\n");
-	printf("█▌                                                           ▐█\n");
-	printf("█▌  ██████╗  ██████╗ ██╗   ██╗ █████╗ ██╗     ███████╗██╗    ▐█\n");
-	printf("█▌  ██╔══██╗██╔═══██╗╚██╗ ██╔╝██╔══██╗██║     ██╔════╝██║    ▐█\n");
-	printf("█▌  ██████╔╝██║   ██║ ╚████╔╝ ███████║██║     █████╗  ██║    ▐█\n");
-	printf("█▌  ██╔══██╗██║   ██║  ╚██╔╝  ██╔══██║██║     ██╔══╝  ╚═╝    ▐█\n");
-	printf("█▌  ██║  ██║╚██████╔╝   ██║   ██║  ██║███████╗███████╗██╗    ▐█\n");
-	printf("█▌  ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝    ▐█\n");
-	printf("█▌                                                           ▐█\n");
-	printf("███████████████████████████████████████████████████████████████\n");
-	printf("\n");
-	free_all(game);
-	exit(EXIT_SUCCESS);
-}
-
-int	close_game(t_game *game)
-{
-	print_movements(game);
-	printf("\n");
-	printf("█████████████████████████████████████████████████████████\n");
-	printf("█▌                                                     ▐█\n");
-	printf("█▌  ██████╗ ███████╗███████╗███████╗ █████╗ ████████╗  ▐█\n");
-	printf("█▌  ██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗╚══██╔══╝  ▐█\n");
-	printf("█▌  ██║  ██║█████╗  █████╗  █████╗  ███████║   ██║     ▐█\n");
-	printf("█▌  ██║  ██║██╔══╝  ██╔══╝  ██╔══╝  ██╔══██║   ██║     ▐█\n");
-	printf("█▌  ██████╔╝███████╗██║     ███████╗██║  ██║   ██║     ▐█\n");
-	printf("█▌  ╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝     ▐█\n");
-	printf("█▌                                                     ▐█\n");
-	printf("█████████████████████████████████████████████████████████\n");
-	printf("\n");
-	free_all(game);
-	exit(EXIT_SUCCESS);
-	return (0);
 }
 
 int	handle_input(int key, t_game *game)

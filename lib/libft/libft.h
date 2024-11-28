@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:22:19 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/25 13:58:42 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:15:02 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stddef.h>
 # include <stdbool.h>
 
-#define BUFFER_SIZE 2
+# define BUFFER_SIZE 2
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -101,8 +101,8 @@ void	print_matrix(char **matrix);
 
 typedef struct s_pipe
 {
-	int read_pipe;
-	int write_pipe;
+	int	read_pipe;
+	int	write_pipe;
 }	t_pipe;
 
 #endif

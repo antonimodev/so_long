@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:38:27 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:06:12 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:44:52 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	reachable_entities(t_game game, t_entities entities, t_coords p_coords)
 	{
 		free_matrix(game.map);
 		free_matrix(game.map_copy);
-		error_msg("Error reachable_entities: No valid exit found or coins remaining");
+		error_msg("Error reachable_entities: No valid exit or coins remaining");
 	}
 }
 
