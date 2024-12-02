@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:17:05 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:09:46 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:10:20 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		ft_bzero(&game, sizeof(t_game));
 		map_validation(&game, av[1]);
 		init_mlx(&game);
 		init_sprite(&game);

@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:52:43 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/28 13:10:40 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:21:31 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	init_sprite(t_game *game)
 {
-	game->floor_img = new_sprite(game, "textures/floor.xpm", "Floor");
-	game->player_img = new_sprite(game, "textures/player.xpm", "Player");
-	game->on_exit_img = new_sprite(game, "textures/on_exit.xpm", "On exit");
-	game->coin_img = new_sprite(game, "textures/coin.xpm", "Coin");
-	game->exit_img = new_sprite(game, "textures/exit.xpm", "Exit");
-	game->wall_img = new_sprite(game, "textures/wall.xpm", "Wall");
+	game->floor_img = new_sprite(game, "textures/floor.xpm");
+	game->player_img = new_sprite(game, "textures/player.xpm");
+	game->on_exit_img = new_sprite(game, "textures/on_exit.xpm");
+	game->coin_img = new_sprite(game, "textures/coin.xpm");
+	game->exit_img = new_sprite(game, "textures/exit.xpm");
+	game->wall_img = new_sprite(game, "textures/wall.xpm");
 }
 
 void	find_sprite(t_game *game, int y, int x)
@@ -47,7 +47,7 @@ void	render_sprite(t_game *game, t_image sprite, int line, int column)
 	column * TILE_SIZE, line * TILE_SIZE);
 }
 
-t_image	new_sprite(t_game *game, char *path, const char *entity)
+t_image	new_sprite(t_game *game, char *path)
 {
 	t_image	sprite;
 
@@ -56,7 +56,7 @@ t_image	new_sprite(t_game *game, char *path, const char *entity)
 	{
 		destroy_images(game);
 		free_all(game);
-		error_msg(ft_strjoin("Couldn't find a sprite of ", entity));
+		error_msg("Error new_sprite: not valid sprite");
 	}
 	return (sprite);
 }

@@ -6,7 +6,7 @@
 /*   By: antonimo <antonimo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:54:35 by antonimo          #+#    #+#             */
-/*   Updated: 2024/11/28 13:55:49 by antonimo         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:21:39 by antonimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int			render_map(t_game *game);
 void		init_sprite(t_game *game);
 void		find_sprite(t_game *game, int y, int x);
 void		render_sprite(t_game *game, t_image sprite, int line, int column);
-t_image		new_sprite(t_game *game, char *path, const char *entity);
+t_image		new_sprite(t_game *game, char *path);
 
 // handle_input.c
 void		print_movements(t_game *game);
